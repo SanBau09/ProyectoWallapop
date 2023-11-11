@@ -1,3 +1,11 @@
+<?php
+    session_start();
+
+    require_once "modelos/connexionDB.php";
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -16,9 +24,17 @@
     </header>
 
     <nav class="navegacion">
-        <a class="navegacion__enlace navegacion__enlace--activo" href="index.html">Anuncios</a>
-        <a class="navegacion__enlace" href="nosotros.html">Mis Anuncios</a>
-        <a class="navegacion__enlace" href="registrate.html">Regístrate</a>
+        <a class="navegacion__enlace navegacion__enlace--activo" href="#">Anuncios</a>
+        <a class="navegacion__enlace" href="#">Mis Anuncios</a>
+        <a class="navegacion__enlace" href="registrar_usuarios.php">Regístrate</a>
+
+        <form action="login.php" method="post">
+
+            <input type="email" name="email" placeholder="email">
+            <input type="password" name="password" placeholder="password">
+            <input type="submit" value="login">
+                
+        </form>
     </nav>
 
     <main class="contenedor">
