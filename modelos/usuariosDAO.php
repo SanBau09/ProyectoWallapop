@@ -15,6 +15,27 @@ class usuariosDAO{
         return null;
     }
 
+   /**
+     * Obtiene un array de usuarios de la BD en función del id
+     * @return array_usuarios Devuelve un array de usuarios
+     */
+    //OBTIENE TODOS LOS USUARIOS DE LA TABLA USUARIOS
+    public function getAll():array {
+        if(!$stmt = $this->conn->prepare("SELECT * FROM usuarios")){
+            echo "Error en la SQL: " . $this->conn->error;
+        }
+       
+        $stmt->execute();     //Ejecutamos la SQL
+        $result = $stmt->get_result();  //Obtener el objeto mysql_result
+
+        $array_mensajes = array();
+        
+        while($usuario = $result->fetch_object(Usuario::class)){
+            $array_usuarios[] = $usuario;
+        }
+        return $array_usuarios;
+    }
+
     /**
      * Obtiene un usuario de la BD en función del email
      * @return Usuario Devuelve un Objeto de la clase Usuario o null si no existe
@@ -66,6 +87,26 @@ class usuariosDAO{
             return null;
         }
     } 
+
+    /**
+     * BORRA EL USUARIO de la tabla usuarios del id pasado por parámetro
+     * @return true si ha borrado el usuario y false si no lo ha borrado (por que no existia)
+     */
+    function delete($id):bool{
+        if(!$stmt = $this->conn->prepare("DELETE FROM usuarios WHERE id=?")){
+            echo "Error en la SQL: " . $this->conn->error;
+        }
+                    
+        $stmt->bind_param('i',$id);   //Asociar las variables a las ? 
+        $stmt->execute();          //Ejecutamos la SQL
+
+        //Comprobamos si ha borrado o no algún registro
+        if($stmt->affected_rows==1){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
 
 
