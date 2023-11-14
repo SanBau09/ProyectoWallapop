@@ -2,8 +2,8 @@
     session_start();
 
     require_once "modelos/connexionDB.php";
-    require_once 'modelos/Usuario.php';
-    require_once 'modelos/UsuariosDAO.php';
+    require_once 'modelos/usuario.php';
+    require_once 'modelos/usuariosDAO.php';
     require_once "utils/funciones.php";
 
     //Creamos la conexión utilizando la clase que hemos creado
@@ -28,8 +28,6 @@
 //$anuncios = $anuncioDAO->getAll();
 ?>
 
-?>
-
 
 <!DOCTYPE html>
 <html lang="es">
@@ -43,7 +41,7 @@
 </head>
 <body>
     <header class="header">
-        <a href="index.html">
+        <a href="index.php">
             <img class="header__logo" src="img/logo.png" alt="Logotipo">
         </a>
     </header>

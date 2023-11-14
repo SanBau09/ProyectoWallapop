@@ -82,5 +82,51 @@ h3 {
 .navegacion__enlace:hover {
     color: var(--primarioOscuro);
 }
+/** Contacto **/
+.formulario{
+    background-color: var(--blanco);
+    margin: -5rem auto 0 auto;
+    width: 95%;
+    padding: 5rem;
+}
+.campo{
+    display: flex;
+    margin-bottom: 2rem;
+}
 
+.campo__label{
+    flex: 0 0 9rem;
+    text-align: right;
+    padding-right: 1rem;
+}
 
+.campo__field{
+    flex: 1; /*le doy un factor de crecimiento de 1*/
+    border: 1px solid var(--gris);
+}
+
+.boton{
+    display: block;
+    font-family: var(--fuentePrincipal);
+    color: var(--blanco);
+    text-align: center;
+    padding: 1rem 3rem;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    border: none;
+}
+@media (min-width: 768px) {
+    .boton{
+        display: inline-block;
+    }
+}
+.boton--primario{
+    background-color: var(--primarioOscuro);
+}
+
+.derecha{
+    display: block;
+    margin-left: auto;
+}

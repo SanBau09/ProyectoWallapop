@@ -21,7 +21,7 @@ class usuariosDAO{
      */
     //OBTIENE TODOS LOS USUARIOS DE LA TABLA USUARIOS
     public function getAll():array {
-        if(!$stmt = $this->conn->prepare("SELECT * FROM usuarios")){
+        if(!$stmt = $this->conn->prepare("SELECT * FROM Usuarios")){
             echo "Error en la SQL: " . $this->conn->error;
         }
        
@@ -41,8 +41,7 @@ class usuariosDAO{
      * @return Usuario Devuelve un Objeto de la clase Usuario o null si no existe
      */
     public function getByEmail($email):Usuario|null {
-        if(!$stmt = $this->conn->prepare("SELECT * FROM usuarios WHERE email = ?"))
-        {
+        if(!$stmt = $this->conn->prepare("SELECT * FROM Usuarios WHERE email = ?")){
             echo "Error en la SQL: " . $this->conn->error;
         }
         //Asociar las variables a las interrogaciones(parámetros)
@@ -63,11 +62,11 @@ class usuariosDAO{
     } 
 
     /**
-     * Obtiene un usuario de la BD en función del id
+     * Obtiene un usuario de la BD en función del sid
      * @return Usuario Devuelve un Objeto de la clase Usuario o null si no existe
      */
     public function getBySid($sdi):Usuario|null {
-        if(!$stmt = $this->conn->prepare("SELECT * FROM usuarios WHERE sid = ?"))
+        if(!$stmt = $this->conn->prepare("SELECT * FROM Usuarios WHERE sid = ?"))
         {
             echo "Error en la SQL: " . $this->conn->error;
         }
@@ -93,7 +92,7 @@ class usuariosDAO{
      * @return true si ha borrado el usuario y false si no lo ha borrado (por que no existia)
      */
     function delete($id):bool{
-        if(!$stmt = $this->conn->prepare("DELETE FROM usuarios WHERE id=?")){
+        if(!$stmt = $this->conn->prepare("DELETE FROM Usuarios WHERE id=?")){
             echo "Error en la SQL: " . $this->conn->error;
         }
                     
@@ -113,7 +112,7 @@ class usuariosDAO{
      * @return idUsuario Devuelve el id autonumérico que se le ha asignado al usuario o false en caso de error
      */
     function insert(Usuario $usuario): int|bool{
-        if(!$stmt = $this->conn->prepare("INSERT INTO usuarios (sid, email, password, nombre, telefono, poblacion) VALUES (?,?,?,?,?,?)")){
+        if(!$stmt = $this->conn->prepare("INSERT INTO Usuarios (sid, email, password, nombre, telefono, poblacion) VALUES (?,?,?,?,?,?)")){
             die("Error al preparar la consulta insert: " . $this->conn->error );
         }
         $sid = $usuario->getSid();
