@@ -77,6 +77,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Agbalumo&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
@@ -132,5 +133,44 @@
                 
         </form>
     </main> 
+
+    <!--FOOTER-->
+    <footer class="site-footer">
+        <div class="grid-footer contenedor">
+        <div><!--Categorias-->
+                <h3>Categorías</h3>
+
+                <nav class="footer-menu">
+                    <a href="#">Coches</a>
+                    <a href="#">Moda y Accesorios</a>
+                    <a href="#">Móviles y Telefonía</a>
+                    <a href="#">Flores</a>
+                    <a href="#">Cine, Libros y Música</a>
+                </nav>
+            </div>
+
+            <div><!--Sobre Nosotros-->
+                <h3>Sobre Nosotros</h3>
+
+                <nav class="footer-menu">
+                    <a href="#">Nuestra Historia</a>
+                    <a href="#">Misión, Visión y Valores</a>
+                    <a href="#">Política de Privacidad</a>
+                    <a href="#">Términos del Servicio</a>
+                </nav>
+            </div>
+
+            <div><!--Soporte-->
+                <h3>Soporte</h3>
+
+                <nav class="footer-menu">
+                    <a href="#">Preguntas Frecuentes</a>
+                    <a href="#">Ayuda en Línea</a>
+                    <a href="#">Confianza y Seguridad</a>
+                </nav>
+            </div>
+        </div>
+        <p class="copyright">Todos los derechos reservados, Wallapop</p>
+    </footer>
 </body>
 </html>

@@ -79,6 +79,49 @@ class anunciosDAO {
     }
 
     /**
+     * Obtiene una lista paginada de anuncios
+     */
+    public function getAnunPag($pag, $numAnunciosPagina): array {
+        $offset = ($pag - 1) * $numAnunciosPagina; //número de filas a omitir antes de recuperar resultados
+
+        $sql = "SELECT * FROM Anuncios ORDER BY fecha_creacion DESC LIMIT ?, ?";
+        if (!$stmt = $this->conn->prepare($sql)) {
+            echo "Error en la SQL: " . $this->conn->error;
+        }
+
+        $stmt->bind_param('ii', $offset, $numAnunciosPagina);
+        $stmt->execute();
+        //Obtener el objeto mysql_result
+        $result = $stmt->get_result();
+
+        $array_anuncios = array();
+
+        while ($anuncio = $result->fetch_object(Anuncio::class)) {
+            $array_anuncios[] = $anuncio;
+        }
+
+        return $array_anuncios;
+    }
+
+    /**
+     * Verifica si hay más páginas disponibles
+     */
+    public function existenPaginas($pagActual, $numAnunciosPagina): bool {
+        $offset = ($pagActual - 1) * $numAnunciosPagina;
+
+        $sql = "SELECT COUNT(id) as total FROM Anuncios"; //para obtener el total de anuncios
+        $result = $this->conn->query($sql);              // Ejecuta la consulta SQL
+        
+        // Verifica si la consulta fue exitosa y obtiene el total de anuncios
+        if ($result && $row = $result->fetch_assoc()) {
+            $totalItems = $row['total'];
+            return $totalItems > ($offset + $numAnunciosPagina);   // Comprueba si hay más páginas disponibles
+        }
+
+        return false;
+    }
+
+    /**
      * Obtiene la foto principal del anuncio
      * @return string Devuelve la ruta de la imagen principal
      */

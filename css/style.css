@@ -7,7 +7,8 @@
     --gris: #3a3535;
     --negro: #000;
 
-    --fuentePrincipal: 'Staatliches', cursive;
+    --fuenteNav: 'Staatliches', cursive;
+    --fuentePrincipal: 'Nunito';
     --fuenteSecundaria: 'Agbalumo';
 }
 
@@ -28,11 +29,13 @@ body {
 }
 p {
     font-size: 1.8rem;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--fuentePrincipal);
     color: var(--blanco);
 }
 a {
     text-decoration: none;
+    color: #000;
+    font-family: var(--fuentePrincipal);
 }
 img {
     width: 100%;
@@ -76,7 +79,7 @@ h3 {
     gap: 2rem; 
 }
 .navegacion__enlace {
-    font-family: var(--fuentePrincipal);
+    font-family: var(--fuenteNav);
     color: var(--blanco);
     font-size: 3rem;
 }
@@ -93,6 +96,19 @@ h3 {
 }
 .cerrarSesion {
     color: var(--blanco);
+}
+
+.boton--nav{
+    font-family: var(--fuentePrincipal);
+    background-color: var(--primarioOscuro);
+    color: var(--blanco);
+    text-align: center;
+    padding: 1rem 3rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    margin-left: 5rem;
+    border: none;
+    border-radius: 5rem;
 }
 
 /** Contacto **/
@@ -129,6 +145,7 @@ h3 {
     font-weight: 700;
     margin-bottom: 2rem;
     border: none;
+    border-radius: 5rem;
 }
 @media (min-width: 768px) {
     .boton{
@@ -175,6 +192,7 @@ h3 {
 }
 
 .card p {
+    font-family: var(--fuentePrincipal);
     padding: 10px;
     margin: 0;
 }
@@ -190,4 +208,44 @@ h3 {
 .icono_borrar a,
 .icono_editar a {
     color:var(--blanco);
+}
+
+.icono_siguiente a,
+.icono_anterior a {
+    color:var(--primarioOscuro);
+    /*display: flex;
+    align-items: center;*/
+}
+
+.icono_siguiente a i,
+.icono_anterior a i {
+    font-size: 3rem; 
+}
+
+/*FOOTER*/
+.site-footer{
+    border-top: 1px solid #e1e1e1;
+    margin-top:  5rem;
+    padding-top: 5rem;
+}
+
+.site-footer h3{
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.copyright{
+    text-align: center;
+    margin-top: 5rem;
+}
+
+.grid-footer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.footer-menu a{
+    display: block;
+    text-align: center;
 }
