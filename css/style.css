@@ -8,6 +8,7 @@
     --negro: #000;
 
     --fuentePrincipal: 'Staatliches', cursive;
+    --fuenteSecundaria: 'Agbalumo';
 }
 
 html {
@@ -44,7 +45,7 @@ img {
 h1, h2, h3 {
     text-align: center;
     color: var(--gris);
-    font-family: var(--fuentePrincipal);
+    font-family: var(--fuenteSecundaria);
 }
 h1 {
     font-size: 4rem;
@@ -71,6 +72,7 @@ h3 {
     padding: 1rem 0;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 2rem; 
 }
 .navegacion__enlace {
@@ -82,6 +84,17 @@ h3 {
 .navegacion__enlace:hover {
     color: var(--primarioOscuro);
 }
+.usuario-info {
+    margin-left: 5rem;
+}
+.nombreUsuario{
+    color: var(--blanco);
+    font-weight: bold;
+}
+.cerrarSesion {
+    color: var(--blanco);
+}
+
 /** Contacto **/
 .formulario{
     background-color: var(--blanco);
@@ -129,4 +142,52 @@ h3 {
 .derecha{
     display: block;
     margin-left: auto;
+}
+
+/** Anuncio **/
+.listado-anuncios {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+}
+
+.card{
+    background-color: var(--primarioOscuro);
+    width: 21rem;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column; /* Ajusta la dirección del contenedor flex a columna */
+    align-items: center; /* Centra los elementos a lo largo del eje transversal (eje Y) */
+}
+.card img {
+    width: 100%;
+    height: 200px; /* Establece la altura deseada de la imagen */
+    object-fit: cover; /* Ajusta la imagen para cubrir el contenedor sin cambiar su tamaño */
+    border-bottom: 1px solid #ddd;
+}
+
+.card h4 {
+    padding: 10px;
+    margin: 0;
+}
+
+.card p {
+    padding: 10px;
+    margin: 0;
+}
+
+.icono_contenedor {
+    display: flex;
+}
+.icono_borrar,
+.icono_editar {
+    margin-right: 10px;
+}
+
+.icono_borrar a,
+.icono_editar a {
+    color:var(--blanco);
 }

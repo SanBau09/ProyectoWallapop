@@ -1,8 +1,7 @@
 <?php 
-    class Anuncio {
+    class Foto {
         private $id;
         private $idAnuncio;
-        private $titulo;
         private $ruta_foto;
         private $foto_principal;
 
@@ -15,21 +14,11 @@
             return $this;
         }
 
-
         public function getIdAnuncio(){
             return $this->idAnuncio;
         }
         public function setIdAnuncio($idAnuncio): self{
             $this->idAnuncio = $idAnuncio;
-            return $this;
-        }
-
-
-        public function getTitulo(){
-            return $this->titulo;
-        }
-        public function setTitulo($titulo): self{
-            $this->titulo = $titulo;
             return $this;
         }
 
@@ -41,12 +30,10 @@
             return $this;
         }
 
-
-
         public function getFotoPrincipal(){
             return $this->foto_principal;
         }
-        public function setPoblacion($foto_principal): self{
+        public function setFotoPrincipal($foto_principal): self{
             $this->foto_principal = $foto_principal;
             return $this;
         }

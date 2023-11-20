@@ -6,7 +6,7 @@
         private $descripcion;
         private $fecha_creacion;
         private $precio;
-        private $foto_principal;
+        private $fotos = array();
 
     // Métodos para acceder a los atributos
         public function getId(){
@@ -62,11 +62,11 @@
             return $this;
         }
 
-        public function getFotoPrincipal(){
-            return $this->foto_principal;
+        public function getFotos(){
+            return $this->fotos;
         }
-        public function setFotoPrincipal($foto_principal): self{
-            $this->foto_principal = $foto_principal;
+        public function setFotos($fotos): self{
+            $this->fotos = $fotos;            
             return $this;
         }
     }

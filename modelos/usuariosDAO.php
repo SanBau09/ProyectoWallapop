@@ -65,7 +65,7 @@ class usuariosDAO{
      * Obtiene un usuario de la BD en función del sid
      * @return Usuario Devuelve un Objeto de la clase Usuario o null si no existe
      */
-    public function getBySid($sdi):Usuario|null {
+    public function getBySid($sid):Usuario|null {
         if(!$stmt = $this->conn->prepare("SELECT * FROM Usuarios WHERE sid = ?"))
         {
             echo "Error en la SQL: " . $this->conn->error;
