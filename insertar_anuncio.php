@@ -105,6 +105,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     <link href="https://fonts.googleapis.com/css2?family=Staatliches&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/jquery-te-1.4.0.css">
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="utils/jquery-te-1.4.0.min.js"></script>
     <title>Crear Anuncio</title>
 </head>
 <body>
@@ -137,15 +140,13 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                 <input type="submit">
             </div>
         </form>
-        <!--<script>
+        <script>
             $(document).ready(function(){
             $('.editor').jqte();
             });
 
-        </script>-->
+        </script>
 </body>
 
-<!-- jQuery -->
-<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="/utils/jquery-te-1.4.0.min.js"></script>-->
+
 </html>
