@@ -7,6 +7,7 @@ require_once 'modelos/usuario.php';
 require_once 'modelos/usuariosDAO.php';
 require_once 'modelos/anuncio.php';
 require_once 'modelos/anunciosDAO.php';
+require_once 'modelos/foto.php';
 require_once 'modelos/config.php';
 require_once "utils/funciones.php";
 
@@ -68,7 +69,7 @@ $anuncios = $anuncioDAO->getAllAnunUsuario($_SESSION['id']); //El id del usuario
                 <div class="card">
                     <img src="<?=$anuncioDAO->getFotoPrincipal($anuncio->getId())?>" alt="<?=$anuncio->getTitulo()?>"/>
                     <h4 class="titulo">
-                        <a href="ver_anuncio.php?id=<?=$anuncio->getId()?>"><?= $anuncio->getTitulo() ?></a>
+                        <a class="titulo_card" href="ver_anuncio.php?id=<?=$anuncio->getId()?>"><?= $anuncio->getTitulo() ?></a>
                     </h4>
                     <p> PRECIO: <?= $anuncio->getPrecio() ?></p>
 

@@ -6,6 +6,7 @@
     require_once 'modelos/usuariosDAO.php';
     require_once 'modelos/anuncio.php';
     require_once 'modelos/anunciosDAO.php';
+    require_once 'modelos/foto.php';
     require_once 'modelos/config.php';
     require_once "utils/funciones.php";
 
@@ -94,14 +95,14 @@
             <?php foreach ($anuncios as $anuncio): ?>
                 <div class="card">
                     <img src="<?=$anuncioDAO->getFotoPrincipal($anuncio->getId())?>" alt="<?=$anuncio->getTitulo()?>"/>
-                    <h4 class="titulo">
-                        <a href="ver_anuncio.php?id=<?=$anuncio->getId()?>"><?= $anuncio->getTitulo() ?></a>
+                    <h4 >
+                        <a class="titulo_card" href="ver_anuncio.php?id=<?=$anuncio->getId()?>"><?= $anuncio->getTitulo() ?></a>
                     </h4>
                     <p> PRECIO: <?= $anuncio->getPrecio() ?></p>
                     <div class="icono_contenedor">
                         <?php if(isset($_SESSION['email']) && $_SESSION['id']==$anuncio->getIdUsuario()): ?>
-                            <span class="icono_borrar"><a href="borrar_anuncio.php?id=<?=$anuncio->getId()?>"><i class="fa-solid fa-trash color_gris"></i></a></span>
                             <span class="icono_editar"><a href="editar_anuncio.php?id=<?=$anuncio->getId()?>"><i class="fa-solid fa-pen-to-square color_gris"></i></a></span>
+                            <span class="icono_borrar"><a href="borrar_anuncio.php?id=<?=$anuncio->getId()?>"><i class="fa-solid fa-trash color_gris"></i></a></span>
                         <?php endif; ?>
                     </div> 
                 </div>
@@ -109,12 +110,14 @@
         </div>
 
         <!-- Mostrar enlaces de paginación -->
-        <?php if ($anuncioDAO->existenPaginas($pagActual, $numAnunciosPagina)): ?>
-            <span class="icono_siguiente"><a href="?pag=<?= $pagActual + 1 ?>"><i class="fa-solid fa-circle-arrow-right"></i></a></span>
-        <?php endif; ?>
-        <?php if ($pagActual > 1): ?>
-            <span class="icono_anterior"><a href="?pag=<?= $pagActual - 1 ?>"><i class="fa-solid fa-circle-arrow-left"></i></a></span>
-        <?php endif; ?>
+        <div class="center">
+            <?php if ($pagActual > 1): ?>
+                <span class="icono_anterior"><a href="?pag=<?= $pagActual - 1 ?>"><i class="fa-solid fa-circle-arrow-left"></i></a></span>
+            <?php endif; ?>
+            <?php if ($anuncioDAO->existenPaginas($pagActual, $numAnunciosPagina)): ?>
+                <span class="icono_siguiente"><a href="?pag=<?= $pagActual + 1 ?>"><i class="fa-solid fa-circle-arrow-right"></i></a></span>
+            <?php endif; ?>
+        </div>
 
 
 

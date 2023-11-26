@@ -39,9 +39,8 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             $fotosNombres = $_FILES['file']['name'];  
             $fotosTipos = $_FILES['file']['type'];
             $fotosTempNombres = $_FILES['file']['tmp_name'];        
-            
-            $indice = 0;
-            foreach($fotosNombres as $foto){
+                        
+            foreach($fotosNombres as $indice => $foto){
                 // Se comprueba que el formato de la foto es el correcto
                 if($fotosTipos[$indice] != 'image/jpeg' &&
                 $fotosTipos[$indice] != 'image/webp' &&
@@ -51,25 +50,25 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                 }
                 else{                    
                     //Calculamos un hash para el nombre del archivo
-                    $fotoNombre = generarNombreArchivo($foto);                    
+                    $fotoNombre = generarNombreArchivo($foto);       
+                    
                     //Si existe un archivo con ese nombre volvemos a calcular el hash
-                    while(file_exists("fotosAnuncios/$fotoNombre")){
+                    while(file_exists("fotosAnuncios/".$fotoNombre)){
                         $fotoNombre = generarNombreArchivo($foto);
                     }
                     // Se guarda la foto en la carpeta y si no se puede salta el error
-                    if(!move_uploaded_file($fotosTempNombres[$indice], "fotosAnuncios/$fotoNombre")){
+                    if(!move_uploaded_file($fotosTempNombres[$indice], "fotosAnuncios/".$fotoNombre)){
                         die("Error al copiar la foto a la carpeta fotosAnuncios");
                     }
                     else{ // Todo ha ido bien, así que se genera el objeto de tipo Foto y se guarda en un array
                         $nuevaFoto = new Foto();
-                        $nuevaFoto->setRutaFoto("fotosAnuncios/$fotoNombre");
+                        $nuevaFoto->setRutaFoto("fotosAnuncios/".$fotoNombre);
                         if ($indice == 0){ // Si el array contiene fotos, se marca como principal la primera
                             $nuevaFoto->setFotoPrincipal(true);
                         }
                         array_push($fotosAnuncio, $nuevaFoto); // Se introduce la nueva foto al array de fotos
                     }
                 }
-                $indice ++;
             }
 
             // Si no ha habido error previo, se guarda el anuncio en la base de datos
@@ -117,7 +116,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         </a>
     </header>
 
-    <main class="contenedor">
+    <main class="contenedor sombra">
         <h1>Crea tu Anuncio</h1>
         <?= $error ?>
         <form class="formulario" action="insertar_anuncio.php" method="post" enctype="multipart/form-data">
@@ -127,7 +126,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
             </div> 
             <div class="campo">
                 <label class="campo__label" for="precio">Precio</label>
-                <input class="campo__field" type="number" name="precio" placeholder="Precio"><br>
+                <input class="campo__field" type="number" step="0.01" name="precio" placeholder="Precio"><br>
             </div> 
             <div class="campo">
                 <label class="campo__label" for="descripcion">Añade tu descripción</label>
@@ -137,15 +136,57 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                 <input type='file' name='file[]' accept="image/jpeg, image/gif, image/webp, image/png" multiple><br> 
             </div>
             <div class="campo">
-                <input type="submit">
+                <input class="boton boton--primario derecha" type="submit">
             </div>
+            <a class="volver" href="index.php">Volver al listado de anuncios</a>
         </form>
+
         <script>
             $(document).ready(function(){
             $('.editor').jqte();
             });
 
         </script>
+    </main>
+
+    <!--FOOTER-->
+    <footer class="site-footer">
+        <div class="grid-footer contenedor">
+        <div><!--Categorias-->
+                <h3>Categorías</h3>
+
+                <nav class="footer-menu">
+                    <a href="#">Coches</a>
+                    <a href="#">Moda y Accesorios</a>
+                    <a href="#">Móviles y Telefonía</a>
+                    <a href="#">Flores</a>
+                    <a href="#">Cine, Libros y Música</a>
+                </nav>
+            </div>
+
+            <div><!--Sobre Nosotros-->
+                <h3>Sobre Nosotros</h3>
+
+                <nav class="footer-menu">
+                    <a href="#">Nuestra Historia</a>
+                    <a href="#">Misión, Visión y Valores</a>
+                    <a href="#">Política de Privacidad</a>
+                    <a href="#">Términos del Servicio</a>
+                </nav>
+            </div>
+
+            <div><!--Soporte-->
+                <h3>Soporte</h3>
+
+                <nav class="footer-menu">
+                    <a href="#">Preguntas Frecuentes</a>
+                    <a href="#">Ayuda en Línea</a>
+                    <a href="#">Confianza y Seguridad</a>
+                </nav>
+            </div>
+        </div>
+        <p class="copyright">Todos los derechos reservados, Wallapop</p>
+    </footer>
 </body>
 
 

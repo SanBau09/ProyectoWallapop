@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 20-11-2023 a las 13:55:20
+-- Tiempo de generación: 26-11-2023 a las 17:59:27
 -- Versión del servidor: 8.0.34-0ubuntu0.22.04.1
 -- Versión de PHP: 8.1.2-1ubuntu2.14
 
@@ -41,14 +41,17 @@ CREATE TABLE `Anuncios` (
 --
 
 INSERT INTO `Anuncios` (`id`, `idUsuario`, `titulo`, `descripcion`, `fecha_creacion`, `precio`) VALUES
-(2, 3, 'gallinas', '2', '2023-11-19 17:00:04', '2.00'),
-(5, 5, 'tulipanes', 'ramos de tulipanes en rojo,naranja y amarillo', '2023-11-20 07:53:34', '12.00'),
-(6, 5, 'rosas', 'ramos de rosas en blancco y rojo', '2023-11-20 07:54:24', '36.00'),
-(7, 6, 'Iphone 13', 'casi nuevo', '2023-11-20 08:15:13', '540.00'),
-(8, 3, 'paraguas', 'es plegable', '2023-11-20 08:43:25', '12.00'),
-(9, 6, 'Jarrón', 'cerámica pintada a mano', '2023-11-20 08:57:47', '12.00'),
-(10, 6, 'Maus ', 'novela gráfica', '2023-11-20 12:49:44', '12.00'),
-(11, 3, 'skyrim', 'casi nuevo', '2023-11-20 12:52:55', '12.00');
+(17, 5, 'Tulipanes', 'Vendo preciosos ramos de tulipanes en color rojo, amarillo y naranja.', '2023-11-26 10:46:35', '12.00'),
+(19, 5, 'Rosas', 'Ramos en color rojo y blanco', '2023-11-26 10:54:02', '32.00'),
+(20, 5, 'Lilium', 'Ramos de lilium en blanco y en rosa.', '2023-11-26 10:55:44', '24.00'),
+(21, 3, 'paraguas', 'en perfecto estado.', '2023-11-26 10:59:27', '18.60'),
+(22, 3, 'gallinas', 'pregunte sin compromiso', '2023-11-26 11:00:20', '6.50'),
+(23, 3, 'abrigo', 'Abrigo reversible, practicamente nuevo.', '2023-11-26 11:03:37', '25.00'),
+(24, 3, 'espejo', 'En perfecto estado.', '2023-11-26 11:04:53', '20.00'),
+(25, 3, 'ropa bebe', 'lote de ropa variada de bebé', '2023-11-26 11:08:06', '50.00'),
+(26, 6, 'iphone 13', 'a estrenar', '2023-11-26 11:09:29', '500.00'),
+(27, 6, 'Maus ', 'novela gráfica.', '2023-11-26 11:10:04', '8.00'),
+(28, 6, 'skyrim', 'juego en buen estado', '2023-11-26 11:10:33', '12.00');
 
 -- --------------------------------------------------------
 
@@ -68,21 +71,28 @@ CREATE TABLE `FotosAnuncios` (
 --
 
 INSERT INTO `FotosAnuncios` (`id`, `idAnuncio`, `ruta_foto`, `foto_principal`) VALUES
-(1, 2, 'fotosAnuncios/557e40cfaeef0f8bc44c1d2e86461e63.', 1),
-(2, 2, 'fotosAnuncios/7f48e10132622264f837d990a0561814.', NULL),
-(8, 5, 'fotosAnuncios/2be3d7ba502574ada16c5f1b9b78b0f7.', 1),
-(9, 5, 'fotosAnuncios/26ed1ac87b0d4a62388268a20c3dfc9c.', NULL),
-(10, 5, 'fotosAnuncios/801d51be00fd77df75ab5a508271e840.', NULL),
-(11, 6, 'fotosAnuncios/b472b45a0da89f48958cee7d98a1bb44.', 1),
-(12, 6, 'fotosAnuncios/cf92316c7da548c957d12f484db955a7.', NULL),
-(13, 7, 'fotosAnuncios/a6780eab4f351004b8bfec18c0c9ffc7.', 1),
-(14, 8, 'fotosAnuncios/1c69751cf40309239f243b9797b15dde.', 1),
-(15, 9, 'fotosAnuncios/7448b053a56506be66d11bb77ce5fbfb.', 1),
-(16, 9, 'fotosAnuncios/93ad575537cc0b6bfd564c2fa54b6107.', NULL),
-(17, 10, 'fotosAnuncios/45c5f8bfdb8d149e339f95833b54154d.', 1),
-(18, 10, 'fotosAnuncios/98062c39659ee3dfba0e94aa539532ef.', NULL),
-(19, 11, 'fotosAnuncios/33b2da35c6113c492b67ecef52f3f708.', 1),
-(20, 11, 'fotosAnuncios/09402f20b656df0777faeea3d607e167.', NULL);
+(27, 17, 'fotosAnuncios/5cab8a722d2548b91643f22d136063a1.jpeg', 0),
+(28, 17, 'fotosAnuncios/2953af0e2f472bb59f149cc8b7936382.jpeg', 1),
+(29, 17, 'fotosAnuncios/46a56b0bdaeb096a731d98a023ada389.jpeg', 0),
+(32, 19, 'fotosAnuncios/a13001222a69e0fdde32274214da219d.jpeg', 1),
+(33, 19, 'fotosAnuncios/2c2c6666b8924d725c5bf1eddeb40147.jpeg', NULL),
+(34, 20, 'fotosAnuncios/ea391beb4b03e3404fcf4c7275166f3a.jpeg', 1),
+(35, 20, 'fotosAnuncios/a854527b8355d55c3ec460d5c3516532.jpeg', NULL),
+(36, 21, 'fotosAnuncios/26e2d2ff73179d60aa2eedb8bdf3a343.webp', 1),
+(37, 22, 'fotosAnuncios/eab03255e0640e994f4c8ddf7eb487af.jpeg', 1),
+(38, 22, 'fotosAnuncios/d59836e0cc42871ad608b38a0bb5535f.jpg', NULL),
+(39, 23, 'fotosAnuncios/02d0b1f185e9abcfe0cb4dceeb35a88f.webp', 1),
+(40, 23, 'fotosAnuncios/c175cefa2b36386895f73b8b01d8f590.webp', NULL),
+(41, 24, 'fotosAnuncios/43f8e0b193e224103f6751ee26215cd4.webp', 1),
+(42, 25, 'fotosAnuncios/76f8b793e7cee5365ab1e983b85e5482.webp', 1),
+(43, 25, 'fotosAnuncios/2897d45ee30e414ad89fbc5dc1adcc2d.webp', 0),
+(44, 25, 'fotosAnuncios/619d8c3edcdae00fb85988db4547c83e.webp', 0),
+(45, 25, 'fotosAnuncios/e5d7c0e0a72cd43b81e694e0a9566e53.webp', 0),
+(46, 26, 'fotosAnuncios/3b9a0ec93fc10a3008d0b9ea842d5a0c.webp', 1),
+(47, 27, 'fotosAnuncios/e30e89b8ac1673bb539a0c46fd026021.webp', 1),
+(48, 27, 'fotosAnuncios/2c9d8b67f7370f0a67a6155193803e9f.webp', NULL),
+(49, 28, 'fotosAnuncios/f8cd9171b56c3269ddddb774694e0238.webp', 1),
+(50, 28, 'fotosAnuncios/58e521f7191c6714c8cacb420fd923a4.webp', NULL);
 
 -- --------------------------------------------------------
 
@@ -143,13 +153,13 @@ ALTER TABLE `Usuarios`
 -- AUTO_INCREMENT de la tabla `Anuncios`
 --
 ALTER TABLE `Anuncios`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT de la tabla `FotosAnuncios`
 --
 ALTER TABLE `FotosAnuncios`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT de la tabla `Usuarios`

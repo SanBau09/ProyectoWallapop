@@ -98,7 +98,7 @@
         </a>
     </header>
 
-    <main class="contenedor">
+    <main class="contenedor sombra">
         <h1>Registro</h1>
         <?= $error ?>
         <form class="formulario" action="registrar_usuario.php" method="post" enctype="multipart/form-data">

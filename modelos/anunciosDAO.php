@@ -25,7 +25,11 @@ class anunciosDAO {
 
         //Si ha encontrado algún resultado devolvemos un objeto de la clase Anuncio, sino null
         if($result->num_rows == 1){
-            $anuncio = $result->fetch_object(Anuncio::class);
+            $anuncio = $result->fetch_object(Anuncio::class); // Se obtiene el anuncio de la tabla Anuncios
+
+            $fotosAnuncio = $this->getFotosAnuncio($id); // Se obtienen las fotos del anuncio de la tabla Fotos
+            $anuncio -> setFotos($fotosAnuncio); // Se guardan las fotos obtenidas en el objeto anuncio
+
             return $anuncio;
         }
         else{
@@ -49,6 +53,10 @@ class anunciosDAO {
         $array_anuncios = array();
         
         while($anuncio = $result->fetch_object(Anuncio::class)){
+
+            $fotosAnuncio = $this->getFotosAnuncio($anuncio -> getId()); // Se obtienen las fotos del anuncio de la tabla Fotos
+            $anuncio -> setFotos($fotosAnuncio); // Se guardan las fotos obtenidas en el objeto anuncio
+
             $array_anuncios[] = $anuncio;
         }
         return $array_anuncios;
@@ -73,6 +81,10 @@ class anunciosDAO {
         $array_anunciosUsuario = array();
         
         while($anuncio = $result->fetch_object(Anuncio::class)){
+
+            $fotosAnuncio = $this->getFotosAnuncio($anuncio -> getId()); // Se obtienen las fotos del anuncio de la tabla Fotos
+            $anuncio -> setFotos($fotosAnuncio); // Se guardan las fotos obtenidas en el objeto anuncio
+
             $array_anunciosUsuario[] = $anuncio;
         }
         return $array_anunciosUsuario;
@@ -97,6 +109,10 @@ class anunciosDAO {
         $array_anuncios = array();
 
         while ($anuncio = $result->fetch_object(Anuncio::class)) {
+
+            $fotosAnuncio = $this->getFotosAnuncio($anuncio -> getId()); // Se obtienen las fotos del anuncio de la tabla Fotos
+            $anuncio -> setFotos($fotosAnuncio); // Se guardan las fotos obtenidas en el objeto anuncio
+            
             $array_anuncios[] = $anuncio;
         }
 
@@ -147,6 +163,38 @@ class anunciosDAO {
         return $rutaFoto ?: "";
     }
 
+    /**
+     * Obtiene todas las fotos de la tabla Fotos con el id del anuncio
+     * @return array Devuelve un array de objetos Foto
+     */
+    public function getFotosAnuncio($idAnuncio):array {
+
+        if(!$stmt = $this->conn->prepare("SELECT * FROM FotosAnuncios WHERE idAnuncio = ? ")){
+            echo "Error en la SQL: " . $this->conn->error;
+        }
+        //Asociar las variables a las interrogaciones(parámetros)
+        $stmt->bind_param('i',$idAnuncio);
+        //Ejecutamos la SQL
+        $stmt->execute();
+        //Obtener el objeto mysql_result
+        $result = $stmt->get_result();
+
+        $array_fotosAnuncio = array();
+        
+        if ($result->num_rows > 0) {
+
+            while($foto = $result->fetch_object(Foto::class)){
+                $array_fotosAnuncio[] = $foto;
+            }
+        } else {
+            echo "No se encontraron resultados.";
+        }
+        
+        $stmt->close();
+
+        return $array_fotosAnuncio;
+
+    }
 
 
 
@@ -236,7 +284,7 @@ class anunciosDAO {
         $precio = $anuncio->getPrecio();
         $fotos = $anuncio->getFotos();
         
-        $stmt->bind_param('issd',$id, $titulo, $descripcion, $precio);
+        $stmt->bind_param('ssdi',$titulo, $descripcion, $precio, $id);
 
         if ($stmt->execute()){// Si el update de la tabla Anuncio es correcto, se hace el update de la tabla fotosAnuncio
             foreach($fotos as $foto){
@@ -246,7 +294,7 @@ class anunciosDAO {
                 $idFoto = $foto->getId();
                 $foto_principal = $foto->getFotoPrincipal();
 
-                $stmtFotos->bind_param('ii',$id, $foto_principal);
+                $stmtFotos->bind_param('ii', $foto_principal, $idFoto);
                 if (!$stmtFotos->execute()){
                     die("Error actualizar las fotos: " . $this->conn->error );
                 }

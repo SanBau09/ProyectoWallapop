@@ -69,6 +69,17 @@
             $this->fotos = $fotos;            
             return $this;
         }
+
+        public function establecerFotoPrincipal($index){
+            foreach($this->fotos as $indexArray => $foto){ // Se recorren todas las fotos del anuncio
+                if ($indexArray == $index){ // Si el índice de la foto es el mismo que el índice buscado, la foto se marca como principal
+                    $foto->setFotoPrincipal(true);
+                }
+                else{ // El resto de fotos se marcan como no principal
+                    $foto->setFotoPrincipal(false);
+                }
+            }
+        }
     }
 
 ?>

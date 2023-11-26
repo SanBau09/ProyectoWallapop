@@ -12,7 +12,24 @@ class usuariosDAO{
      * @return Usuario Devuelve un Objeto de la clase Usuario
      */
     public function getById($id):Usuario|null{
-        return null;
+        if(!$stmt = $this->conn->prepare("SELECT * FROM Usuarios WHERE id = ?")){
+            echo "Error en la SQL: " . $this->conn->error;
+        }
+        //Asociar las variables a las interrogaciones(parámetros)
+        $stmt->bind_param('i',$id);
+        //Ejecutamos la SQL
+        $stmt->execute();
+        //Obtener el objeto mysql_result
+        $result = $stmt->get_result();
+
+        //Si ha encontrado algún resultado devolvemos un objeto de la clase Usuario, sino null
+        if($result->num_rows >= 1){
+            $usuario = $result->fetch_object(Usuario::class);
+            return $usuario;
+        }
+        else{
+            return null;
+        }
     }
 
    /**

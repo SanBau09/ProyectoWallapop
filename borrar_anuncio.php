@@ -3,6 +3,7 @@ session_start();
 
 require_once 'modelos/connexionDB.php';
 require_once 'modelos/anuncio.php';
+require_once 'modelos/foto.php';
 require_once 'modelos/anunciosDAO.php';
 require_once 'utils/funciones.php';
 require_once 'modelos/config.php';
@@ -57,17 +58,61 @@ $anuncio = $anunciosDAO->getById($idAnuncio);
         <?php endif; ?>
     </nav>
 
-    <main>
+    <main class="contenedor center">
         <!--Comprobamos que anuncio pertenece al usuario conectado -->
         <?php if($_SESSION['id']==$anuncio->getIdUsuario()):
-            $anunciosDAO->delete($idAnuncio); ?>
+            $anunciosDAO->delete($idAnuncio); 
+            foreach($anuncio->getFotos() as $foto){    //Tambien hay que eliminar las fotos del fichero
+                if(file_exists($foto->getRutaFoto())){ //si existe el fichero , se borra
+                    unlink($foto->getRutaFoto());
+                }
+            }
+        ?>
             ANUNCIO BORRADO CORRECTAMENTE
         <?php else: ?>
             EL ANUNCIO NO SE PUEDE BORRAR
         <?php endif; ?>        
-
+        <br><br><br>
         <a href="misAnuncios.php" class="nuevoAnuncio">Volver a Mis Anuncios</a>
     </main>
 
+    <!--FOOTER-->
+    <footer class="site-footer">
+        <div class="grid-footer contenedor">
+        <div><!--Categorias-->
+                <h3>Categorías</h3>
+
+                <nav class="footer-menu">
+                    <a href="#">Coches</a>
+                    <a href="#">Moda y Accesorios</a>
+                    <a href="#">Móviles y Telefonía</a>
+                    <a href="#">Flores</a>
+                    <a href="#">Cine, Libros y Música</a>
+                </nav>
+            </div>
+
+            <div><!--Sobre Nosotros-->
+                <h3>Sobre Nosotros</h3>
+
+                <nav class="footer-menu">
+                    <a href="#">Nuestra Historia</a>
+                    <a href="#">Misión, Visión y Valores</a>
+                    <a href="#">Política de Privacidad</a>
+                    <a href="#">Términos del Servicio</a>
+                </nav>
+            </div>
+
+            <div><!--Soporte-->
+                <h3>Soporte</h3>
+
+                <nav class="footer-menu">
+                    <a href="#">Preguntas Frecuentes</a>
+                    <a href="#">Ayuda en Línea</a>
+                    <a href="#">Confianza y Seguridad</a>
+                </nav>
+            </div>
+        </div>
+        <p class="copyright">Todos los derechos reservados, Wallapop</p>
+    </footer>
 </body>
 </html>
