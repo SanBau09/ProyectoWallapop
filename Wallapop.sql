@@ -34,7 +34,7 @@ CREATE TABLE `Anuncios` (
   `descripcion` text,
   `fecha_creacion` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `precio` decimal(10,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `Anuncios`
@@ -64,7 +64,7 @@ CREATE TABLE `FotosAnuncios` (
   `idAnuncio` int DEFAULT NULL,
   `ruta_foto` varchar(255) DEFAULT NULL,
   `foto_principal` tinyint(1) DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `FotosAnuncios`
@@ -108,7 +108,7 @@ CREATE TABLE `Usuarios` (
   `nombre` varchar(255) DEFAULT NULL,
   `telefono` varchar(20) DEFAULT NULL,
   `poblacion` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Volcado de datos para la tabla `Usuarios`
