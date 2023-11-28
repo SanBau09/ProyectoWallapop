@@ -70,6 +70,9 @@
             return $this;
         }
 
+        /**
+         *establece una de las fotos como la foto principal y el resto como no principales, utilizando un índice proporcionado como parámetro.
+         */
         public function establecerFotoPrincipal($index){
             foreach($this->fotos as $indexArray => $foto){ // Se recorren todas las fotos del anuncio
                 if ($indexArray == $index){ // Si el índice de la foto es el mismo que el índice buscado, la foto se marca como principal

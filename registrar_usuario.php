@@ -9,16 +9,16 @@
     $email = $password = $nombre = $telefono = $poblacion = '';
     $error= $msje_error_email = $msje_error_password = '';
 
-    if($_SERVER['REQUEST_METHOD']=='POST'){
+    if($_SERVER['REQUEST_METHOD']=='POST'){ //si el formulario ha sido enviado...
     
-        //Limpiamos los datos
+        //Limpiamos los datos con htmlentities para prevenir inyecciones HTML en los datos recibidos del formulario
         $email = htmlentities($_POST['email']);
         $password = htmlentities($_POST['password']);
         $nombre = htmlentities($_POST['nombre']);
         $telefono = htmlentities($_POST['telefono']);
         $poblacion = htmlentities($_POST['poblacion']);
     
-        //Validación de campos obligatorios y otras
+        //VALIDACION de campos obligatorios y otras
         $error = false;
     
         //Comprobar si el email es un email de verdad
@@ -26,7 +26,7 @@
             $error = true;
             $msje_error_email = "El email no tiene el formato correcto";
         }
-        
+        //Comprobar si el email esta vacío
         if(empty($email)){
             $error = true;
             $msje_error_email = "Debe escribir un email";
@@ -50,8 +50,10 @@
         
         if($error == ''){    //Si no hay error
 
-            //Insertamos en la BD
+            //Insertamos en la BD un nuevo usuario
             $usuario = new Usuario();
+
+            //se establecen sus propiedades con los datos del formulario
             $usuario->setSid(sha1(rand()+time()), true);
             $usuario->setEmail($email);
             //encriptamos el password

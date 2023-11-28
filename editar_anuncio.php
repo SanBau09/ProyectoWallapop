@@ -116,7 +116,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 
                             <label>
                             <input type="radio" name="foto_principal" value="<?= $index ?>"
-                                <?php if ($foto->getFotoPrincipal()): ?>checked<?php endif; ?>> <!-- El checkbox está marcado si la foto es foto principal -->
+                                <?php if ($foto->getFotoPrincipal()): ?>checked<?php endif; ?>> <!-- El radio está marcado si la foto es foto principal -->
                             Foto Principal
                             </label>
                         </div>

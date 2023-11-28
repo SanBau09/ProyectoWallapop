@@ -15,6 +15,7 @@ if(!isset($_SESSION['email'])){
     die();
 }
 
+//Declaramos las variables para que no fallen en los value="" del html la primera vez que entramos
 $titulo = $descripcion = $precio = '';
 $fotosAnuncio = array();
 $error ='';
@@ -32,23 +33,22 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         $precio =  htmlspecialchars($_POST['precio']);
         
         //Validamos los datos
-        if(empty($titulo) || empty($descripcion)|| empty($precio)){
+        if(empty($titulo) || empty($descripcion)|| empty($precio)){ //si alguno está vacío, se avisa de un error
             $error = "Los tres campos son obligatorios";
-        }        
-        else{            
-            $fotosNombres = $_FILES['file']['name'];  
+        }         
+        else{                                                 //si los campos obligatorios están completos, se procede a manejar las fotos
+            $fotosNombres = $_FILES['file']['name'];          //se obtienen los nombres, tipos y nombres temporales de los archivos enviados
             $fotosTipos = $_FILES['file']['type'];
             $fotosTempNombres = $_FILES['file']['tmp_name'];        
                         
-            foreach($fotosNombres as $indice => $foto){
-                // Se comprueba que el formato de la foto es el correcto
+            foreach($fotosNombres as $indice => $foto){    // Se comprueba que el formato de la foto es el correcto
                 if($fotosTipos[$indice] != 'image/jpeg' &&
                 $fotosTipos[$indice] != 'image/webp' &&
                 $fotosTipos[$indice] != 'image/png')
                 {
                     $error="la foto no tiene el formato admitido, debe ser jpg, webp o png";
                 }
-                else{                    
+                else{       //si todas las fotos tienen formatos validos, se procesa y almacena cada foto en la carpeta fotosAnuncios              
                     //Calculamos un hash para el nombre del archivo
                     $fotoNombre = generarNombreArchivo($foto);       
                     

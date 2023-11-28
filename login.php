@@ -14,11 +14,11 @@ $conn = $connexionDB->getConnexion();
 $email = htmlspecialchars($_POST['email']);
 $password = htmlspecialchars($_POST['password']);
 
-//Validamos el usuario
+//VALIDACION Del usuario
 $usuariosDAO = new UsuariosDAO($conn);
 if($usuario = $usuariosDAO->getByEmail($email)){
     if(password_verify($password, $usuario->getPassword())){
-        //email y password correctos. Inciamos sesión
+        //si email y password son correctos. Inciamos sesión
         $_SESSION['email'] = $usuario->getEmail();
         $_SESSION['id'] = $usuario->getId();
         $_SESSION['nombre']=$usuario->getNombre();
