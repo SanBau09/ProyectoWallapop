@@ -36,6 +36,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
         //Limpiamos los datos que vienen del usuario
         $titulo = htmlspecialchars($_POST['titulo']);
         $descripcion =  htmlspecialchars($_POST['descripcion']);
+        //$descripcion =  strip_tags($_POST['descripcion'],"<br>"); seria así
         $precio =  htmlspecialchars($_POST['precio']);
         $indiceFotoPrincipal = htmlspecialchars($_POST['foto_principal']);
         
